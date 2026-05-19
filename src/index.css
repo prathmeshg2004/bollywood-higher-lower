@@ -367,7 +367,7 @@ body {
   .slider-track {
     flex-direction: column;
     width: 100%;
-    height: max-content;
+    height: 100%;
   }
   
   .slider-track.sliding {
@@ -377,6 +377,10 @@ body {
   .movie-card {
     width: 100vw;
     height: 50vh;
+    max-height: 50vh;
+    flex-shrink: 0;
+    flex-grow: 0;
+    overflow: hidden;
   }
   
   .movie-poster-contain {
