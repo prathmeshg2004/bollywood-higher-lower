@@ -11,6 +11,18 @@ function App() {
     return saved ? parseInt(saved, 10) : 0;
   });
   
+  const [isSoundOn, setIsSoundOn] = useState(() => {
+    const saved = localStorage.getItem('bollywoodSound');
+    return saved !== 'false';
+  });
+
+  const toggleSound = () => {
+    setIsSoundOn(prev => {
+      localStorage.setItem('bollywoodSound', (!prev).toString());
+      return !prev;
+    });
+  };
+  
   const [disabledMovies, setDisabledMovies] = useState(() => {
     const saved = localStorage.getItem('disabledMovies');
     return saved ? JSON.parse(saved) : [];
@@ -61,6 +73,14 @@ function App() {
     setGameState('playing');
   };
 
+  // Update high score in real-time as score increases
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+      localStorage.setItem('bollywoodHighScore', score.toString());
+    }
+  }, [score, highScore]);
+
   const gameOver = (finalScore) => {
     if (finalScore > highScore) {
       setHighScore(finalScore);
@@ -72,6 +92,14 @@ function App() {
   return (
     <>
       <div className="app-container">
+        <button 
+          className="sound-toggle-btn" 
+          onClick={toggleSound}
+          aria-label="Toggle Sound"
+        >
+          {isSoundOn ? '🔊' : '🔇'}
+        </button>
+
         {gameState === 'start' && (
           <div className="screen bollywood-bg">
             <div className="glass-panel">
@@ -100,6 +128,7 @@ function App() {
             setScore={setScore} 
             highScore={highScore} 
             activeMovies={activeMovies}
+            isSoundOn={isSoundOn}
           />
         )}
 

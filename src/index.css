@@ -349,6 +349,9 @@ body {
   font-size: 1.2rem;
   font-weight: 700;
   z-index: 100;
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
 }
 
 @keyframes popIn {
@@ -356,24 +359,90 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
   }
   
+  .slider-track {
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+  }
+  
+  .slider-track.sliding {
+    transform: translateY(-50vh);
+  }
+  
+  .movie-card {
+    width: 100vw;
+    height: 50vh;
+  }
+  
+  .movie-poster-contain {
+    top: 0;
+    left: 7.5%;
+    transform: none;
+    height: 100%;
+    width: 85%;
+    object-fit: cover;
+    border-radius: 8px;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
+  }
+  
   .vs-badge {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     font-size: 1rem;
   }
   
   .movie-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .card-content {
+    gap: 0.3rem;
+    width: 90%;
+  }
+  
+  .quote {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .action-buttons {
+    gap: 0.6rem;
+    margin: 0.4rem 0;
+    max-width: 200px;
+  }
+  
+  .btn-higher, .btn-lower {
+    padding: 0.6rem;
+    font-size: 0.95rem;
   }
   
   .rating-display {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .score-area {
+    top: 1rem;
+    right: 1rem;
+    bottom: auto;
+    font-size: 1rem;
+  }
+  
+  .high-score-area {
+    top: 1rem;
+    left: 1rem;
+    bottom: auto;
+    font-size: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
   }
 }
 
@@ -574,4 +643,81 @@ body {
 .flipper-text.fade-out {
   opacity: 0;
   transform: translateY(-5px);
+}
+
+/* Sound Toggle Button */
+.sound-toggle-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 150;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: white;
+  outline: none;
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.high-score-goal {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffcc00;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Milestone Toasts */
+.milestone-toast {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  z-index: 1000;
+  animation: slideDownFade 0.4s ease-out;
+  max-width: 90%;
+  width: 400px;
+}
+
+@keyframes slideDownFade {
+  0% { transform: translate(-50%, -20px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .sound-toggle-btn {
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
 }
