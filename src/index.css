@@ -441,8 +441,14 @@ body {
     bottom: auto;
     font-size: 1rem;
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  
+  .high-score-goal {
+    font-size: 0.75rem;
+    font-weight: 500;
   }
 }
 
@@ -647,12 +653,12 @@ body {
 
 /* Sound Toggle Button */
 .sound-toggle-btn {
-  position: absolute;
+  position: fixed;
   top: 2rem;
   right: 2rem;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 150;
+  z-index: 999;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   width: 45px;
@@ -713,9 +719,10 @@ body {
 
 @media (max-width: 768px) {
   .sound-toggle-btn {
+    position: fixed;
     top: auto;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     width: 45px;
     height: 45px;
     font-size: 1.4rem;
