@@ -45,6 +45,18 @@ const Game = ({ onGameOver, score, setScore, highScore, activeMovies, isSoundOn 
     setMoviePool(shuffled.slice(2)); // Store the rest of the movies in the pool
   }, [activeMovies]);
 
+  // Preload the next 3 movie images in the background to eliminate loading delay
+  useEffect(() => {
+    if (!moviePool || moviePool.length === 0) return;
+    const toPreload = moviePool.slice(0, 3);
+    toPreload.forEach((movie) => {
+      if (movie && movie.image) {
+        const img = new Image();
+        img.src = movie.image;
+      }
+    });
+  }, [moviePool]);
+
   const handleGuess = (guess) => {
     setRevealedRating(visibleMovies[1].rating);
     

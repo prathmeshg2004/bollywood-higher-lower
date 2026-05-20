@@ -24,7 +24,7 @@ class AudioSynthService {
       osc.frequency.setValueAtTime(160, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(700, this.ctx.currentTime + durationMs / 1000);
       
-      gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.8, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + durationMs / 1000);
       
       osc.start();
@@ -59,7 +59,7 @@ class AudioSynthService {
       osc2.start(now + 0.08);
       osc2.stop(now + 0.35);
       
-      gain.gain.setValueAtTime(0.4, now);
+      gain.gain.setValueAtTime(0.9, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
     } catch (e) {
       console.warn("Audio correct chime failed", e);
@@ -80,7 +80,7 @@ class AudioSynthService {
       osc.frequency.setValueAtTime(140, now);
       osc.frequency.linearRampToValueAtTime(80, now + 0.4);
       
-      gain.gain.setValueAtTime(0.5, now);
+      gain.gain.setValueAtTime(0.95, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
       
       osc.start(now);
@@ -116,7 +116,7 @@ class AudioSynthService {
       filter.connect(gain);
       gain.connect(this.ctx.destination);
       
-      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.setValueAtTime(0.8, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
       
       noise.start(now);
@@ -131,7 +131,7 @@ class AudioSynthService {
       osc.frequency.setValueAtTime(180, now);
       osc.frequency.exponentialRampToValueAtTime(60, now + 0.15);
       
-      oscGain.gain.setValueAtTime(0.4, now);
+      oscGain.gain.setValueAtTime(0.95, now);
       oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
       
       osc.start(now);
